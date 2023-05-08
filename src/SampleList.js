@@ -14,14 +14,17 @@ const SampleList = () => {
     setInputText(e.target.value);
   };
 
+  // 리스트
   const namesList = names.map((name) => {
     return (
       <li key={name.id}>
-        {name.id},{name.text}
+        {name.id}, {name.text}
+        <button onClick={() => onRemove(name.id)}>제거</button>
       </li>
     );
   });
 
+  // 추가
   const onClick = () => {
     const addList = names.concat({
       id: nextId,
@@ -30,6 +33,12 @@ const SampleList = () => {
     setNextId(nextId + 1);
     setNames(addList);
     setInputText("");
+  };
+
+  // 제거
+  const onRemove = (id) => {
+    const removeList = names.filter((name) => name.id !== id);
+    setNames(removeList);
   };
 
   return (
